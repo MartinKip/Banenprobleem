@@ -2,14 +2,13 @@ package main;
 
 import entities.Employee;
 import entities.Job;
-import util.Constants;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 /**
+ * Data center containing data structure for the program
  * Created by Martin on 12-1-2016.
  */
 public class DataCenter {
@@ -30,24 +29,30 @@ public class DataCenter {
 
     private void randomizeEmployeePreferences() {
         for(Employee employee : allEmployees){
-            Collections.shuffle(allJobs);
-            employee.setJobs(allJobs.toArray(new Job[Constants.AMOUNT_OF_JOBS]));
+            List<Job> allJobsCopy = new ArrayList<>(allJobs);
+            Collections.shuffle(allJobsCopy);
+            employee.setJobs(allJobsCopy);
         }
 
+        /*
         for(Employee employee: allEmployees){
             System.out.println(employee.toString());
         }
+        */
     }
 
     private void randomizeJobPreferences(){
         for (Job job : allJobs){
-            Collections.shuffle(allEmployees);
-            job.setEmployees(allEmployees.toArray(new Employee[Constants.AMOUNT_OF_EMPLOYEES]));
+            List<Employee> allEmployeesCopy = new ArrayList<>(allEmployees);
+            Collections.shuffle(allEmployeesCopy);
+            job.setEmployees(allEmployeesCopy);
         }
 
+        /*
         for (Job job : allJobs){
             System.out.println(job.toString());
         }
+        */
     }
 
     private void generateJobs() {
@@ -70,5 +75,13 @@ public class DataCenter {
         allEmployees.add(employee1);
         allEmployees.add(employee2);
         allEmployees.add(employee3);
+    }
+
+    public List<Employee> getAllEmployees(){
+        return this.allEmployees;
+    }
+
+    public List<Job> getAllJobs(){
+        return this.allJobs;
     }
 }

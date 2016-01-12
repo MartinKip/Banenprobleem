@@ -8,5 +8,8 @@ public class Main {
     public static void main(String[] args){
         DataCenter dataCenter = new DataCenter();
         dataCenter.GenerateEmployees();
+
+        Matcher matcher = new Matcher(dataCenter);
+        matcher.match();
     }
 }
